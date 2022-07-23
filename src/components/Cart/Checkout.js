@@ -4,7 +4,7 @@ import classes from "./Checkout.module.css";
 const isEmpty = (value) => value.trim() === "";
 const isFiveChars = (value) => value.trim().length === 5;
 
-const Checkout = ({ onClose }) => {
+const Checkout = ({ onClose, onConfirm }) => {
   const [formInputValidity, setFormInputValidity] = useState({
     name: true,
     street: true,
@@ -46,6 +46,13 @@ const Checkout = ({ onClose }) => {
     if (!formIsValid) {
       return;
     }
+
+    onConfirm({
+      name: enteredName,
+      street: enteredStreet,
+      city: enteredCity,
+      postalCode: enteredPostalCode,
+    });
   };
 
   const nameControlClassses = `${classes.control} ${
@@ -53,15 +60,15 @@ const Checkout = ({ onClose }) => {
   }`;
 
   const streetControlClassses = `${classes.control} ${
-    formInputValidity.name ? "" : classes.invalid
+    formInputValidity.street ? "" : classes.invalid
   }`;
 
   const postalCodeControlClassses = `${classes.control} ${
-    formInputValidity.name ? "" : classes.invalid
+    formInputValidity.postalCode ? "" : classes.invalid
   }`;
 
   const cityControlClassses = `${classes.control} ${
-    formInputValidity.name ? "" : classes.invalid
+    formInputValidity.city ? "" : classes.invalid
   }`;
 
   return (
