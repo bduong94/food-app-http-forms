@@ -15,7 +15,6 @@ const AvailableMeals = () => {
         "https://react-http-6e23b-default-rtdb.firebaseio.com/meals.js"
       );
 
-      console.log(response.ok);
       if (!response.ok) {
         throw new Error("Something went wrong!");
       }
@@ -35,18 +34,16 @@ const AvailableMeals = () => {
       setIsLoading(false);
     };
 
-    try {
-      fetchMeals();
-    } catch (error) {
+    fetchMeals().catch((error) => {
       setIsLoading(false);
       setHttpError(error.message);
-    }
+    });
   }, []);
 
   if (isLoading) {
     return (
       <section className={classes.MealsLoading}>
-        <p>...is Loading</p>
+        <p>Loading</p>
       </section>
     );
   }
