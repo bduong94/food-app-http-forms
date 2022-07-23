@@ -24,10 +24,12 @@ const Checkout = ({ onClose }) => {
         <label htmlFor="city">City</label>
         <input type="text" id="city" />
       </div>
-      <button type="button" onClick={onClose}>
-        Cancel
-      </button>
-      <button>Confirm</button>
+      <div className={classes.actions}>
+        <button type="button" onClick={onClose}>
+          Cancel
+        </button>
+        <button>Confirm</button>
+      </div>
     </form>
   );
 };
