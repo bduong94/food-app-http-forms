@@ -13,7 +13,19 @@ const AvailableMeals = () => {
       );
 
       const responseData = await response.json();
+      const loadedData = [];
+
+      for (const key in responseData) {
+        loadedData.push({
+          id: key,
+          name: responseData[key]["name"],
+          price: responseData[key]["price"],
+        });
+      }
+
+      setMeals(loadedData);
     };
+
     fetchMeals();
   }, []);
 
