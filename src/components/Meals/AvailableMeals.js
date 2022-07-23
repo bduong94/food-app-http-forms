@@ -26,10 +26,19 @@ const AvailableMeals = () => {
       }
 
       setMeals(loadedData);
+      setIsLoading(false);
     };
 
     fetchMeals();
   }, []);
+
+  if (isLoading) {
+    return (
+      <section className={classes.MealsLoading}>
+        <p>...is Loading</p>
+      </section>
+    );
+  }
 
   const mealsList = meals.map((meal) => (
     <MealItem
